@@ -26,10 +26,10 @@ class App extends Component {
           "Content_Type": 'application/json',
           Accepts: "application/json"
         },
-        body: JSON.stringify({data})
+        body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(console.log())
+    .then(info => console.log(info))
     }
 
     render(){
