@@ -23,7 +23,7 @@ console.log(this.state);
   render(){
   return (
     <div className="App">
-        <form method='post' action='ec2-3-92-47-162.compute-1.amazonaws.com'>
+        <form method='post' action='ec2-3-92-47-162.compute-1.amazonaws.com:3001'>
             <div className='name'>
               <label htmlFor='name'>Enter Name:</label>
               <input type='text' name='name' onChange={this.handleChange}/>
