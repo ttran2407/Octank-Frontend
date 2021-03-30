@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-      fetch('http://ip-10-0-5-26.ec2.internal:3001',{
+      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -28,7 +28,7 @@ class App extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       this.sendingForm(this.state)
-      fetch('http://ip-10-0-5-26.ec2.internal:3001',{
+      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -38,7 +38,7 @@ class App extends Component {
 
     sendingForm = (data) => {
       console.log(data.name)
-      fetch('http://ip-10-0-5-26.ec2.internal:3001', {
+      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
