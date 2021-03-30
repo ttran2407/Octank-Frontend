@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com',{
+      fetch('http://10.0.5.26:3001',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
