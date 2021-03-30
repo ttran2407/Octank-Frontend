@@ -23,7 +23,7 @@ console.log(this.state);
   render(){
   return (
     <div className="App">
-        <form method='post' action='internal-OctankAppTier-628124198.us-east-1.elb.amazonaws.com'>
+        <form method='post' action='https://github.com/ttran2407/Octank-Frontend.git'>
             <div className='name'>
               <label htmlFor='name'>Enter Name:</label>
               <input type='text' name='name' onChange={this.handleChange}/>
