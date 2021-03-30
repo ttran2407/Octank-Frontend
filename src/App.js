@@ -1,10 +1,21 @@
 import React,{Component} from 'react';
 import './App.css';
 
+
 class App extends Component {
     state = {
       name: "",
-      rollno: ""
+      rollno: "",
+      list:[{"name": "Tien","rollno":"0"}]
+    }
+
+    componentDidMount = () => {
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001',{
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+      })
+      .then(res => res.json())
+      .then(data => this.setState({list: data}))
     }
 
     handleChange = (e) => {
@@ -17,14 +28,20 @@ class App extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       this.sendingForm(this.state)
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001',{
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+      })
+      .then(res => res.json())
+      .then(data => this.setState({list: data}))
     }
 
     sendingForm = (data) => {
-    fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001', {
+      console.log(data.name)
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001', {
         method: "POST",
         headers: {
-          "Content_Type": 'application/json',
-          Accepts: "application/json"
+          "Content-Type": 'application/json'
         },
         body: JSON.stringify(data)
     })
@@ -32,21 +49,60 @@ class App extends Component {
     .then(info => console.log(info))
     }
 
+    getColumns = () => {
+      if(this.state.list[0] != null){
+        return Object.keys(this.state.list[0]).map((key) => {
+          return {
+            Header: key,
+            accessor: key
+          };
+        });
+      }
+    }
+
+    renderTableData() {
+       return this.state.list.map((student, index) => {
+          const { name, rollno } = student //destructuring
+          return (
+             <tr key={rollno}>
+                <td>{rollno}</td>
+                <td>{name}</td>
+             </tr>
+          )
+       })
+    }
+
+    renderTableHeader() {
+       let header = Object.keys(this.state.list[0])
+       return header.map((key, index) => {
+          return <th key={index}>{key.toUpperCase()}</th>
+       })
+    }
+
     render(){
+      console.log(this.state.list)
     return (
 
     <div className="App">
-    Hello World
-      <form onSubmit={this.handleSubmit}>
+
+      <table id='student'>
+        <tbody>
+          <tr>{this.renderTableHeader()}</tr>
+          {this.renderTableData()}
+        </tbody>
+      </table>
+
+
+      <form onSubmit={this.handleSubmit} >
 
         <div className='name'>
           <label htmlFor='name'>Enter Name:</label>
-          <input type='text' name='name' onChange={this.handleChange}/>
+          <input type='text' name='name' value={this.state.name} onChange={this.handleChange}/>
         </div>
 
           <div className='rollno'>
             <label htmlFor='rollno'>Enter Roll-no:</label>
-            <input type='text' name='rollno' onChange={this.handleChange}/>
+            <input type='text' name='rollno' value={this.state.rollno} onChange={this.handleChange}/>
           </div>
 
           <div className='submit'>
@@ -54,6 +110,8 @@ class App extends Component {
           </div>
 
       </form>
+
+
     </div>
 
     );
