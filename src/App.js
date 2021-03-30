@@ -65,8 +65,8 @@ class App extends Component {
           const { name, rollno } = student //destructuring
           return (
              <tr key={rollno}>
-                <td>{rollno}</td>
                 <td>{name}</td>
+                <td>{rollno}</td>
              </tr>
           )
        })
