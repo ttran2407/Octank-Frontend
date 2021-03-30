@@ -28,7 +28,7 @@ class App extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       this.sendingForm(this.state)
-      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com',{
+      fetch('http://10.0.5.26:3001',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -38,7 +38,7 @@ class App extends Component {
 
     sendingForm = (data) => {
       console.log(data.name)
-      fetch('http://internal-OctankAppTier-936138435.us-east-1.elb.amazonaws.com', {
+      fetch('http://10.0.5.26:3001', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
