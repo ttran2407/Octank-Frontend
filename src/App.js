@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-      fetch('http://3.92.47.162:3001',{
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -28,7 +28,9 @@ class App extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       this.sendingForm(this.state)
-      fetch('http://3.92.47.162:3001',{
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001
+
+',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -38,7 +40,9 @@ class App extends Component {
 
     sendingForm = (data) => {
       console.log(data.name)
-      fetch('http://3.92.47.162:3001', {
+      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001
+
+', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
