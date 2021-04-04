@@ -10,7 +10,7 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-      fetch('http://10.0.0.224:3001',{
+      fetch('http://OctankAppTier-931399693.us-east-1.elb.amazonaws.com',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -28,7 +28,7 @@ class App extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       this.sendingForm(this.state)
-      fetch('http://10.0.0.224:3001',{
+      fetch('http://OctankAppTier-931399693.us-east-1.elb.amazonaws.com',{
         method: "GET",
         headers: {"Content-Type": "application/json"}
       })
@@ -38,7 +38,7 @@ class App extends Component {
 
     sendingForm = (data) => {
       console.log(data.name)
-      fetch('http://ec2-3-92-47-162.compute-1.amazonaws.com:3001', {
+      fetch('http://OctankAppTier-931399693.us-east-1.elb.amazonaws.com', {
         method: "POST",
         headers: {
           "Content-Type": 'application/json'
